@@ -1,3 +1,7 @@
+[English](README-ru.md) | **Русский**
+
+---
+
 # XLSX generator
 Generate excel tables from simple text data. Additional tool for AI
 
