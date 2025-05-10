@@ -29,7 +29,7 @@ pip install openpyxl
 ### Usage  
 1. Create a text file named `xlsx_generate.txt` in the same folder as the script  
 2. Fill it with data using the format described below  
-3. Run the script: `python script_name.py`  
+3. Run the script: `python3 xlsx.py`  
 4. The output will be saved to `storage/shared/download/output.xlsx`  
 
 ### Input File Format  
