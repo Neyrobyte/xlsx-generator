@@ -38,7 +38,7 @@ Tutle1;Title2;Title3
 value1;value2;value3
 42;2023-01-01;Text
 
-sheet:ИмяЛиста2
+sheet:ListName2
 OtherTitle1;OtherTitle2
 100;Example Text
 ```
@@ -50,7 +50,7 @@ OtherTitle1;OtherTitle2
 - Поддерживаются специальные форматы для ячеек:
   - Даты: `YYYY-MM-DD`, `DD/MM/YYYY`, `DD.MM.YYYY`
   - Формулы Excel: `{"value": "=SUM(A1:A10)"}`
-  - JSON-формат для сложных значений: `{"value": "текст"}`
+  - JSON-формат для сложных значений: `{"value": "text"}`
 
 ### Результат работы
 Скрипт создаст Excel-файл со следующими особенностями:
