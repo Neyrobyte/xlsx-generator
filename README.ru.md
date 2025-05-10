@@ -1,4 +1,7 @@
 [English](README.md) | **Русский**
+<p align="center">
+  <img src="logo.svg" alt="" width="256">
+</p>
 
 ---
 
