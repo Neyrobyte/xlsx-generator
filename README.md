@@ -1,6 +1,6 @@
 **English** | [Русский](README.ru.md)
 <p align="center">
-  <img src="assets/logo.svg" alt="xlsx-generator Logo" width="256">
+  <img src="logo.svg" alt="" width="256">
 </p>
 ---
 
