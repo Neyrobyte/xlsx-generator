@@ -36,12 +36,12 @@ pip install openpyxl
 The file should contain data in the following format:
 ```
 sheet:ListName1
-Header1;Header2;Header3
+Tutle1;Title2;Title3
 value1;value2;value3
 42;2023-01-01;Text
 
 sheet:ListName2
-OtherHeader1;OtherHeader2
+OtherTitle1;OtherTitle2
 100;Example Text
 ```
 
