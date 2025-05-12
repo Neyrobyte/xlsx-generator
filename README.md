@@ -1,4 +1,4 @@
-![Alt text](https://neyrobyte.github.io/xlsx-logo.html)
+![error](https://neyrobyte.github.io/xlsx-logo.html)
 
 **English** | [Русский](README.ru.md)
 <p align="center">
