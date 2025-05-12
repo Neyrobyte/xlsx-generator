@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xlsx-generator Logo</title>
+    <style>
+        .logo-container {
+            width: 512px;
+            height: 512px;
+            background: #000000;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-inner {
+            width: 90%;
+            height: 90%;
+            border: 4px solid #00CED1;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .logo-text {
+            color: #00CED1;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .logo-main-text {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        .logo-sub-text {
+            font-size: 24px;
+            opacity: 0.8;
+        }
+        
+        .logo-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(0, 206, 209, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 206, 209, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: 0;
+        }
+        
+        .logo-highlight {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(0, 206, 209, 0.2), transparent 70%);
+            top: -50px;
+            right: -50px;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <div class="logo-grid"></div>
+        <div class="logo-highlight"></div>
+        <div class="logo-inner">
+            <div class="logo-text">
+                <div class="logo-main-text">xlsx-generator</div>
+                <div class="logo-sub-text">by Neyrobyte</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
