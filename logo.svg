@@ -1,19 +1,31 @@
 <svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-    <!-- Фон -->
-    <rect width="512" height="512" rx="20" fill="#000000"/>
+    <!-- Определения -->
+    <defs>
+        <!-- Сетка -->
+        <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0, 206, 209, 0.05)" stroke-width="1"/>
+        </pattern>
+        
+        <!-- Подсветка -->
+        <radialGradient id="highlight" cx="0.7" cy="0.3" r="0.7" gradientUnits="objectBoundingBox">
+            <stop offset="0%" stop-color="rgba(0, 206, 209, 0.2)"/>
+            <stop offset="70%" stop-color="rgba(0, 206, 209, 0)"/>
+        </radialGradient>
+        
+        <!-- Маска для закругленных углов -->
+        <mask id="roundCorners">
+            <rect width="512" height="512" fill="white" rx="20"/>
+        </mask>
+    </defs>
+    
+    <!-- Фон с закругленными углами -->
+    <rect width="512" height="512" rx="20" fill="#000000" mask="url(#roundCorners)"/>
     
     <!-- Сетка -->
-    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-        <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0, 206, 209, 0.05)" stroke-width="1"/>
-    </pattern>
-    <rect width="512" height="512" fill="url(#grid)"/>
+    <rect width="512" height="512" fill="url(#grid)" mask="url(#roundCorners)"/>
     
-    <!-- Подсветка -->
-    <radialGradient id="highlight" cx="0.7" cy="0.3" r="0.7" gradientUnits="objectBoundingBox">
-        <stop offset="0%" stop-color="rgba(0, 206, 209, 0.2)"/>
-        <stop offset="70%" stop-color="rgba(0, 206, 209, 0)"/>
-    </radialGradient>
-    <ellipse cx="400" cy="100" rx="150" ry="150" fill="url(#highlight)"/>
+    <!-- Подсветка (теперь корректно обрезается) -->
+    <ellipse cx="400" cy="100" rx="150" ry="150" fill="url(#highlight)" mask="url(#roundCorners)"/>
     
     <!-- Внутренняя рамка -->
     <rect x="25.6" y="25.6" width="460.8" height="460.8" rx="15" fill="none" stroke="#00CED1" stroke-width="4"/>
