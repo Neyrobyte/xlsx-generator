@@ -1,6 +1,8 @@
+![Alt text](https://neyrobyte.github.io/xlsx-logo.html)
+
 **English** | [Русский](README.ru.md)
 <p align="center">
-  <img src="https://github.com/Neyrobyte/Neyrobyte.github.io/blob/c8032747c853bb8405ca67604ab66a2ba9d77c0c/xlsx-logo.html" alt="" width="256">
+  <img src="logo.svg" alt="" width="256">
 </p>
 
 ---
