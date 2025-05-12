@@ -115,3 +115,97 @@ To add new error handling, modify the `try-except` block in `generate_xlsx`.
 Tested on:  
 - Python 3.6+  
 - OpenPyXL 3.0+
+
+## **AI Documentation (for Neural Networks)**  
+
+This section is intended for AI models that will analyze the repository and generate input data for the `xlsx-generator` script.  
+
+#### **1. Input Data Structure**  
+The script expects a JSON structure describing the Excel table. Format:  
+```json
+{
+  "filename": "output_filename.xlsx",
+  "sheets": [
+    {
+      "name": "SheetName",
+      "headers": ["Header1", "Header2", ...],
+      "rows": [
+        ["Value1", "Value2", ...],
+        ...
+      ],
+      "styles": {
+        "header": { ... },
+        "cells": { ... }
+      }
+    }
+  ]
+}
+```  
+
+#### **2. Field Requirements**  
+- **`filename`** (string):  
+  - Must end with `.xlsx`.  
+  - If omitted, defaults to `output.xlsx`.  
+
+- **`sheets`** (array of objects):  
+  - Each object defines a separate sheet.  
+  - **`name`** (string): Sheet name (if empty, defaults to `Sheet1`, `Sheet2`, etc.).  
+  - **`headers`** (array of strings): Column headers (optional).  
+  - **`rows`** (array of arrays): Table data. Each sub-array represents a row.  
+  - **`styles`** (object, optional): Styling rules.  
+
+#### **3. Styling (`styles`)**  
+The script supports basic formatting via `openpyxl`. Example:  
+```json
+"styles": {
+  "header": {
+    "font": {"bold": true, "color": "FF0000"},
+    "fill": {"patternType": "solid", "fgColor": "FFFF00"}
+  },
+  "cells": {
+    "font": {"size": 12},
+    "alignment": {"horizontal": "center"}
+  }
+}
+```  
+Allowed parameters:  
+- **`font`**: `bold`, `italic`, `size`, `color` (HEX format).  
+- **`fill`**: `patternType`, `fgColor` (background color).  
+- **`alignment`**: `horizontal`, `vertical`.  
+
+#### **4. Generation Rules**  
+- If there are fewer rows than headers, empty cells are filled with `null`.  
+- If a row contains more values than headers, excess data is ignored.  
+- The script automatically adjusts column widths to fit content.  
+
+#### **5. Example AI Task**  
+**User Request:**  
+> "Generate a table with two sheets: the first named 'Report' with headers ['ID', 'Name', 'Score'] and 3 data rows; the second named 'Stats' with a header ['Average Score'] and one row with the calculated value."  
+
+**Generated Input (JSON):**  
+```json
+{
+  "filename": "report.xlsx",
+  "sheets": [
+    {
+      "name": "Report",
+      "headers": ["ID", "Name", "Score"],
+      "rows": [
+        [1, "Alex", 85],
+        [2, "Maria", 92],
+        [3, "Ivan", 78]
+      ]
+    },
+    {
+      "name": "Stats",
+      "headers": ["Average Score"],
+      "rows": [[85]]
+    }
+  ]
+}
+```  
+
+#### **6. Key Notes**  
+- The AI **must** validate the JSON structure before generation.  
+- If the user requests calculations (e.g., "average score"), the AI should compute them and insert results into `rows`.  
+- For complex styling, `styles` can be omitted—the script will use default settings.
