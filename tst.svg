@@ -1,11 +1,11 @@
 <svg width="300" height="100" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
   <rect x="2" y="2" width="296" height="96" fill="black" stroke="#00dd00" stroke-width="2.5" stroke-style="double" />
-  <text x="150" y="50" font-family="'Courier New', monospace" font-size="6" fill="#00ff00" text-anchor="middle" dominant-baseline="middle">
+  <pre x="150" y="50" font-family="'Courier New', monospace" font-size="6" fill="#00ff00" text-anchor="middle" dominant-baseline="middle">
     _   __                      __          __     
    / | / /__  __  ___________  / /_  __  __/ /____ 
   /  |/ / _ \/ / / / ___/ __ \/ __ \/ / / / __/ _ \
  / /|  /  __/ /_/ / /  / /_/ / /_/ / /_/ / /_/  __/
 /_/ |_/\___/\__, /_/   \____/_.___/\__, /\__/\___/ 
            /____/                 /____/           
-  </text>
+  </pre>
 </svg>
