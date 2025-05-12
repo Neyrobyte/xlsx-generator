@@ -1,5 +1,3 @@
-<img src="tst.svg" alt="">
-
 **English** | [Русский](README.ru.md)
 <p align="center">
   <img src="logo.svg" alt="" width="256">
