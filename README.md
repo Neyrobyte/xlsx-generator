@@ -1,12 +1,12 @@
-```diff
-+     _   __                      __          __     
-+    / | / /__  __  ___________  / /_  __  __/ /____ 
-+   /  |/ / _ \/ / / / ___/ __ \/ __ \/ / / / __/ _ \
-+  / /|  /  __/ /_/ / /  / /_/ / /_/ / /_/ / /_/  __/
-+ /_/ |_/\___/\__, /_/   \____/_.___/\__, /\__/\___/ 
-+            /____/                 /____/           
-```
-
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="120" viewBox="0 0 600 120">
+  <rect width="100%" height="100%" fill="#24292e"/> <!-- Тёмный фон как в терминале -->
+  <text x="20" y="30" font-family="Courier New, monospace" font-size="8" fill="#39ff8">    _   __                      __          __     </text>
+  <text x="20" y="50" font-family="Courier New, monospace" font-size="8" fill="#39ff8">   / | / /__  __  ___________  / /_  __  __/ /____ </text>
+  <text x="20" y="70" font-family="Courier New, monospace" font-size="8" fill="#39ff8">  /  |/ / _ \/ / / / ___/ __ \/ __ \/ / / / __/ _ \</text>
+  <text x="20" y="90" font-family="Courier New, monospace" font-size="8" fill="#39ff8"> / /|  /  __/ /_/ / /  / /_/ / /_/ / /_/ / /_/  __/</text>
+  <text x="20" y="110" font-family="Courier New, monospace" font-size="8" fill="#39ff8">/_/ |_/\___/\__, /_/   \____/_.___/\__, /\__/\___/ </text>
+  <text x="20" y="130" font-family="Courier New, monospace" font-size="8" fill="#39ff8">           /____/                 /____/           </text>
+</svg>
 
 **English** | [Русский](README.ru.md)
 <p align="center">
