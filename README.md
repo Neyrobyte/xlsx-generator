@@ -17,195 +17,186 @@ This script converts text files into formatted Excel (XLSX) files with automatic
 - Header and border formatting
 - Automatic column width adjustment
 
-### Requirements  
-- Python 3.6 or newer  
-- Required dependency: `openpyxl`  
+### 1.1. Input JSON File Format
 
-### Installation  
-```bash
-pip install openpyxl
-```
+The program uses `xlsx_data.json` file with the following structure:
 
-### Usage  
-1. Create a text file named `xlsx_generate.txt` in the same folder as the script  
-2. Fill it with data using the format described below  
-3. Run the script: `python3 xlsx.py`  
-4. The output will be saved to `storage/shared/download/output.xlsx`  
-
-### Input File Format  
-The file should contain data in the following format:
-```
-sheet:ListName1
-Tutle1;Title2;Title3
-value1;value2;value3
-42;2023-01-01;Text
-
-sheet:ListName2
-OtherTitle1;OtherTitle2
-100;Example Text
-```
-
-#### Format Specifications:
-- Sheets are separated by empty lines  
-- Sheet names are specified with `sheet:SheetName`  
-- Data fields are delimited by semicolons (`;`)  
-- Special cell formats supported:  
-  - Dates: `YYYY-MM-DD`, `DD/MM/YYYY`, `DD.MM.YYYY`  
-  - Excel formulas: `{"value": "=SUM(A1:A10)"}`  
-  - JSON format for complex values: `{"value": "text"}`  
-
-### Output Features  
-The script generates an Excel file with:
-- Gray headers with bold font  
-- Light gray first column  
-- Numeric columns with alternating pale blue shades  
-- Text columns with alternating pale green and orange shades  
-- Date columns with pale purple background  
-- Thick external borders  
-- Auto-adjusted column widths  
-
-## For Developers  
-
-### Script Architecture  
-Main functions:  
-1. `parse_input_file` - parses the input text file  
-2. `apply_default_styles` - applies styles to Excel sheets  
-3. `generate_xlsx` - main file generation function  
-
-### Style Configuration  
-Styles are defined in the `DEFAULT_STYLES` dictionary. Customizable options:  
-- Fill colors  
-- Font settings  
-- Borders  
-- Text alignment  
-
-### Extending Functionality  
-1. **Adding new data types**:  
-   - Implement new type-checking functions (similar to `is_number` and `is_date`)  
-   - Add corresponding styles to `DEFAULT_STYLES`  
-   - Modify logic in `apply_default_styles`  
-
-2. **Changing input format**:  
-   - Modify the `parse_input_file` function  
-   - Update user documentation  
-
-3. **Adding new styles**:  
-   - Use methods from `openpyxl.styles`  
-   - Add new parameters to `DEFAULT_STYLES`  
-
-### Testing  
-To test changes:  
-1. Create a test input file  
-2. Run the script  
-3. Verify the output file  
-
-### Error Handling  
-The script handles basic errors:  
-- Missing input file  
-- JSON parsing errors  
-- Date formatting errors  
-
-To add new error handling, modify the `try-except` block in `generate_xlsx`.  
-
-### Dependencies  
-- `openpyxl` - for Excel file operations  
-- Python standard libraries: `datetime`, `re`, `json`, `os`  
-
-### Compatibility  
-Tested on:  
-- Python 3.6+  
-- OpenPyXL 3.0+
-
-## **AI Documentation (for Neural Networks)**  
-
-This section is intended for AI models that will analyze the repository and generate input data for the `xlsx-generator` script.  
-
-#### **1. Input Data Structure**  
-The script expects a JSON structure describing the Excel table. Format:  
 ```json
 {
-  "filename": "output_filename.xlsx",
   "sheets": [
     {
-      "name": "SheetName",
-      "headers": ["Header1", "Header2", ...],
-      "rows": [
-        ["Value1", "Value2", ...],
+      "name": "Sheet name",
+      "columnWidths": [numbers],
+      "rowHeights": [numbers],
+      "data": [
+        ["Cell1", "Cell2", ...],
+        ["Cell1", 123, ...],
         ...
-      ],
-      "styles": {
-        "header": { ... },
-        "cells": { ... }
-      }
+      ]
     }
   ]
 }
-```  
+```
 
-#### **2. Field Requirements**  
-- **`filename`** (string):  
-  - Must end with `.xlsx`.  
-  - If omitted, defaults to `output.xlsx`.  
+### 1.2. Configuration Elements
 
-- **`sheets`** (array of objects):  
-  - Each object defines a separate sheet.  
-  - **`name`** (string): Sheet name (if empty, defaults to `Sheet1`, `Sheet2`, etc.).  
-  - **`headers`** (array of strings): Column headers (optional).  
-  - **`rows`** (array of arrays): Table data. Each sub-array represents a row.  
-  - **`styles`** (object, optional): Styling rules.  
+#### Sheet Parameters:
+- `name` (optional) - worksheet name
+- `columnWidths` (optional) - array of column widths (in characters)
+- `rowHeights` (optional) - array of row heights (in points)
+- `data` (required) - 2D array of worksheet data
 
-#### **3. Styling (`styles`)**  
-The script supports basic formatting via `openpyxl`. Example:  
-```json
-"styles": {
-  "header": {
-    "font": {"bold": true, "color": "FF0000"},
-    "fill": {"patternType": "solid", "fgColor": "FFFF00"}
-  },
-  "cells": {
-    "font": {"size": 12},
-    "alignment": {"horizontal": "center"}
-  }
-}
-```  
-Allowed parameters:  
-- **`font`**: `bold`, `italic`, `size`, `color` (HEX format).  
-- **`fill`**: `patternType`, `fgColor` (background color).  
-- **`alignment`**: `horizontal`, `vertical`.  
+### 1.3. Cell Data Types
 
-#### **4. Generation Rules**  
-- If there are fewer rows than headers, empty cells are filled with `null`.  
-- If a row contains more values than headers, excess data is ignored.  
-- The script automatically adjusts column widths to fit content.  
+The program automatically detects data types:
+- **Strings**: `"text"`
+- **Numbers**: `123`, `45.67`
+- **Boolean values**: `true`, `false`
+- **Formulas**: `"=SUM(A1:A10)"` (starts with =)
+- **Dates**: strings in `"YYYY-MM-DD"` format
 
-#### **5. Example AI Task**  
-**User Request:**  
-> "Generate a table with two sheets: the first named 'Report' with headers ['ID', 'Name', 'Score'] and 3 data rows; the second named 'Stats' with a header ['Average Score'] and one row with the calculated value."  
+### 1.4. Automatic Formatting
 
-**Generated Input (JSON):**  
+The program applies styles automatically:
+1. **Header row**:
+   - Gray background
+   - Bold text
+   - Center alignment
+   - Text wrapping
+
+2. **First column**:
+   - Light gray background
+   - Bold text
+   - Center alignment
+
+3. **Numeric cells**:
+   - Even columns: pale blue
+   - Odd columns: pale cyan
+
+4. **Text cells**:
+   - Even columns: pale green
+   - Odd columns: pale orange
+
+5. **Date cells**:
+   - Pale purple background
+   - "YYYY-MM-DD" format
+
+### 1.5. Examples
+
+#### Simple table:
 ```json
 {
-  "filename": "report.xlsx",
   "sheets": [
     {
       "name": "Report",
-      "headers": ["ID", "Name", "Score"],
-      "rows": [
-        [1, "Alex", 85],
-        [2, "Maria", 92],
-        [3, "Ivan", 78]
+      "data": [
+        ["Product", "Quantity", "Price"],
+        ["Apples", 150, 25.50],
+        ["Pears", 80, 32.75],
+        ["Total", "=SUM(B2:B3)", "=SUM(C2:C3)"]
       ]
-    },
-    {
-      "name": "Stats",
-      "headers": ["Average Score"],
-      "rows": [[85]]
     }
   ]
 }
-```  
+```
 
-#### **6. Key Notes**  
-- The AI **must** validate the JSON structure before generation.  
-- If the user requests calculations (e.g., "average score"), the AI should compute them and insert results into `rows`.  
-- For complex styling, `styles` can be omitted—the script will use default settings.
+#### Table with dates:
+```json
+{
+  "sheets": [
+    {
+      "name": "Schedule",
+      "columnWidths": [20, 15, 15],
+      "data": [
+        ["Event", "Date", "Days"],
+        ["Project start", "2023-01-10", 0],
+        ["First milestone", "2023-02-15", 36],
+        ["Completion", "2023-05-20", 130]
+      ]
+    }
+  ]
+}
+```
+
+## 2. For Developers: Program Architecture
+
+### 2.1. Overall Structure
+
+The program consists of one main class `XlsxGenerator` with methods:
+- `main()` - entry point
+- `generate()` - main generation method
+- Helper methods for style creation, sheet processing and data handling
+
+### 2.2. Key Components
+
+#### 2.2.1. Input Processing
+- `readJsonData()` - JSON reading and parsing
+- Uses `org.json` library
+
+#### 2.2.2. Excel Generation
+- Based on Apache POI (`XSSFWorkbook`)
+- Supports:
+  - Various data types
+  - Formulas
+  - Styles and formatting
+  - Auto-sizing
+
+#### 2.2.3. Style System
+- Styles created during initialization
+- Cached in Map for reuse
+- Automatically applied based on:
+  - Cell position
+  - Data type
+  - Column parity
+
+### 2.3. Error Handling
+
+- Basic exception handling
+- Debug mode (`--debug`) for verbose output
+
+### 2.4. Extensibility
+
+#### 2.4.1. Adding New Styles
+1. Add color to `COLORS` array
+2. Create new style in `createDefaultStyles()`
+3. Add application logic in `applyCellStyle()`
+
+#### 2.4.2. Supporting New Data Types
+Modify `applyCellStyle()` to recognize new types
+
+### 2.5. Key Dependencies
+
+- **Apache POI** (v5.2.3+) - Excel manipulation
+- **org.json** (v20231013+) - JSON processing
+
+### 2.6. Maintenance Recommendations
+
+1. **Testing**:
+   - Verify all data type handling
+   - Test edge cases (empty data, large files)
+
+2. **Logging**:
+   - Add more detailed logging
+   - Consider integrating SLF4J
+
+3. **Optimization**:
+   - For large files consider streaming
+   - Optimize style creation
+
+4. **Security**:
+   - Input JSON validation
+   - File size limitations
+
+### 2.7. Extension Example
+
+To add hyperlink support:
+
+```java
+// In createSheet() method:
+if (cellData instanceof String && ((String)cellData).startsWith("http")) {
+    CreationHelper helper = workbook.getCreationHelper();
+    Hyperlink link = helper.createHyperlink(HyperlinkType.URL);
+    link.setAddress((String)cellData);
+    cell.setHyperlink(link);
+}
+```
