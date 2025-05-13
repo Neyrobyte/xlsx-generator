@@ -8,14 +8,14 @@
 # XLSX Generator  
 A tool to generate formatted Excel files from simple text data. Designed as an AI helper utility.
 
-## For Users
-
-### Script Purpose  
+## Script Purpose  
 This script converts text files into formatted Excel (XLSX) files with automatic styling:
 - Automatic data type detection (numbers, dates, text)
 - Color-coded columns by data type
 - Header and border formatting
 - Automatic column width adjustment
+
+## For Users
 
 ### 1.1. Input JSON File Format
 
