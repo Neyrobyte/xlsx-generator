@@ -17,7 +17,7 @@ This script converts text files into formatted Excel (XLSX) files with automatic
 
 ## For Users
 
-### 1.1. Input JSON File Format
+### Input JSON File Format
 
 The program uses `xlsx_data.json` file with the following structure:
 
@@ -38,7 +38,7 @@ The program uses `xlsx_data.json` file with the following structure:
 }
 ```
 
-### 1.2. Configuration Elements
+### Configuration Elements
 
 #### Sheet Parameters:
 - `name` (optional) - worksheet name
@@ -46,7 +46,7 @@ The program uses `xlsx_data.json` file with the following structure:
 - `rowHeights` (optional) - array of row heights (in points)
 - `data` (required) - 2D array of worksheet data
 
-### 1.3. Cell Data Types
+### Cell Data Types
 
 The program automatically detects data types:
 - **Strings**: `"text"`
@@ -55,7 +55,7 @@ The program automatically detects data types:
 - **Formulas**: `"=SUM(A1:A10)"` (starts with =)
 - **Dates**: strings in `"YYYY-MM-DD"` format
 
-### 1.4. Automatic Formatting
+### Automatic Formatting
 
 The program applies styles automatically:
 1. **Header row**:
@@ -81,7 +81,7 @@ The program applies styles automatically:
    - Pale purple background
    - "YYYY-MM-DD" format
 
-### 1.5. Examples
+### Examples
 
 #### Simple table:
 ```json
@@ -118,22 +118,22 @@ The program applies styles automatically:
 }
 ```
 
-## 2. For Developers: Program Architecture
+## For Developers: Program Architecture
 
-### 2.1. Overall Structure
+###  Overall Structure
 
 The program consists of one main class `XlsxGenerator` with methods:
 - `main()` - entry point
 - `generate()` - main generation method
 - Helper methods for style creation, sheet processing and data handling
 
-### 2.2. Key Components
+### Key Components
 
-#### 2.2.1. Input Processing
+#### Input Processing
 - `readJsonData()` - JSON reading and parsing
 - Uses `org.json` library
 
-#### 2.2.2. Excel Generation
+#### Excel Generation
 - Based on Apache POI (`XSSFWorkbook`)
 - Supports:
   - Various data types
@@ -141,7 +141,7 @@ The program consists of one main class `XlsxGenerator` with methods:
   - Styles and formatting
   - Auto-sizing
 
-#### 2.2.3. Style System
+#### Style System
 - Styles created during initialization
 - Cached in Map for reuse
 - Automatically applied based on:
@@ -149,27 +149,27 @@ The program consists of one main class `XlsxGenerator` with methods:
   - Data type
   - Column parity
 
-### 2.3. Error Handling
+### Error Handling
 
 - Basic exception handling
 - Debug mode (`--debug`) for verbose output
 
-### 2.4. Extensibility
+### Extensibility
 
-#### 2.4.1. Adding New Styles
+#### Adding New Styles
 1. Add color to `COLORS` array
 2. Create new style in `createDefaultStyles()`
 3. Add application logic in `applyCellStyle()`
 
-#### 2.4.2. Supporting New Data Types
+#### Supporting New Data Types
 Modify `applyCellStyle()` to recognize new types
 
-### 2.5. Key Dependencies
+### Key Dependencies
 
 - **Apache POI** (v5.2.3+) - Excel manipulation
 - **org.json** (v20231013+) - JSON processing
 
-### 2.6. Maintenance Recommendations
+### Maintenance Recommendations
 
 1. **Testing**:
    - Verify all data type handling
@@ -187,7 +187,7 @@ Modify `applyCellStyle()` to recognize new types
    - Input JSON validation
    - File size limitations
 
-### 2.7. Extension Example
+### Extension Example
 
 To add hyperlink support:
 
