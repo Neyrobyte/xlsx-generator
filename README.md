@@ -118,7 +118,7 @@ The program applies styles automatically:
 }
 ```
 
-## For Developers: Program Architecture
+## For Developers
 
 ###  Overall Structure
 
