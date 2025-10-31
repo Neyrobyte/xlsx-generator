@@ -153,16 +153,6 @@ The program consists of one main class `XlsxGenerator` with methods:
 - Basic exception handling
 - Debug mode (`--debug`) for verbose output
 
-### Extensibility
-
-#### Adding New Styles
-1. Add color to `COLORS` array
-2. Create new style in `createDefaultStyles()`
-3. Add application logic in `applyCellStyle()`
-
-#### Supporting New Data Types
-Modify `applyCellStyle()` to recognize new types
-
 ### Key Dependencies
 
 - **Apache POI** (v5.2.3+) - Excel manipulation
