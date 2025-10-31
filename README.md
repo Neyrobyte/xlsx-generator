@@ -26,12 +26,11 @@ The program uses `xlsx_data.json` file with the following structure:
   "sheets": [
     {
       "name": "Sheet name",
-      "columnWidths": [numbers],
-      "rowHeights": [numbers],
+      "columnWidths": 16,
+      "rowHeights": 16,
       "data": [
-        ["Cell1", "Cell2", ...],
-        ["Cell1", 123, ...],
-        ...
+        ["Cell_1", "Cell_2", 0.99],
+        ["Cell_1", 123, 12.02]
       ]
     }
   ]
